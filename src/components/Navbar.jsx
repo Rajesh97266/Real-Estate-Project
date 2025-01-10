@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { assets } from "../assets/assets";
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  useEffect(() => {
+    if (showMobileMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    }
+  }, [showMobileMenu]);
   return (
     <div className="absolute top-0 left-0 w-full z-10">
       <div className="container mx-auto flex  justify-between items-center py-4 px-6 md:px-20 lg:px-32 bg-transparent ">
@@ -49,16 +60,32 @@ const Navbar = () => {
           />
         </div>
         <ul className="flex flex-col items-center gap-2  px-5 text-lg font-medium mt-10   ">
-          <a href="#header" className="cursor-pointer px-4  inline-block">
+          <a
+            onClick={() => setShowMobileMenu(false)}
+            href="#header"
+            className="cursor-pointer px-4  inline-block"
+          >
             Home
           </a>
-          <a href="#about" className="cursor-pointer px-4  inline-block">
+          <a
+            onClick={() => setShowMobileMenu(false)}
+            href="#about"
+            className="cursor-pointer px-4  inline-block"
+          >
             About
           </a>
-          <a href="#projects" className="cursor-pointer px-4  inline-block">
+          <a
+            onClick={() => setShowMobileMenu(false)}
+            href="#projects"
+            className="cursor-pointer px-4  inline-block"
+          >
             Projects
           </a>
-          <a href="#testimonials" className="cursor-pointer px-4 inline-block">
+          <a
+            onClick={() => setShowMobileMenu(false)}
+            href="#testimonials"
+            className="cursor-pointer px-4 inline-block"
+          >
             Testimonials
           </a>
         </ul>
@@ -68,5 +95,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
